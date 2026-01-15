@@ -1,4 +1,4 @@
-package com.salledesport;
+package com.salledesport.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

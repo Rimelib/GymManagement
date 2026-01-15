@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.salledesport.controller.CoachController"
+      spacing="20" style="-fx-padding: 25; -fx-background-color: #f8f9fa;">
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="🏋️ Gestion des Coachs" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="totalCoachsLabel" text="Total: 0 coach(s)"
+               style="-fx-font-size: 14px; -fx-text-fill: #6c757d;"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- Barre de recherche et actions -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <TextField fx:id="rechercheField"
+                   promptText="🔍 Rechercher par nom, prénom ou email..."
+                   prefWidth="400"
+                   style="-fx-font-size: 14px; -fx-padding: 10;"/>
+
+        <Button text="Rechercher" onAction="#handleRechercher"
+                style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-cursor: hand;"/>
+
+        <Button text="Réinitialiser" onAction="#handleReinitialiser"
+                style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-cursor: hand;"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="➕ Nouveau Coach" onAction="#handleNouveauCoach"
+                style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 25; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- TableView -->
+    <TableView fx:id="coachTable" VBox.vgrow="ALWAYS"
+               style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 5;">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+            <TableColumn fx:id="nomColumn" text="Nom" prefWidth="150"/>
+            <TableColumn fx:id="prenomColumn" text="Prénom" prefWidth="150"/>
+            <TableColumn fx:id="specialiteColumn" text="Spécialité" prefWidth="200"/>
+            <TableColumn fx:id="telephoneColumn" text="Téléphone" prefWidth="150"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="250"/>
+        </columns>
+    </TableView>
+
+    <!-- Boutons d'action -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button text="✏️ Modifier" onAction="#handleModifier"
+                style="-fx-background-color: #ffc107; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 25; -fx-cursor: hand;"/>
+
+        <Button text="🗑️ Supprimer" onAction="#handleSupprimer"
+                style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 25; -fx-cursor: hand;"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Label fx:id="selectionLabel" text="Aucune sélection"
+               style="-fx-text-fill: #6c757d; -fx-font-style: italic;"/>
+    </HBox>
+
+    <!-- Formulaire (caché par défaut) -->
+    <VBox fx:id="formulaireBox" spacing="15"
+          style="-fx-background-color: white; -fx-padding: 25; -fx-border-color: #007bff; -fx-border-width: 2; -fx-border-radius: 5;"
+          visible="false" managed="false">
+
+        <HBox alignment="CENTER_LEFT">
+            <Label fx:id="formulaireTitreLabel" text="➕ Nouveau Coach"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #007bff;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="✕" onAction="#handleAnnuler"
+                    style="-fx-background-color: transparent; -fx-text-fill: #dc3545; -fx-font-size: 20px; -fx-cursor: hand;"/>
+        </HBox>
+
+        <Separator/>
+
+        <!-- Ligne 1 : Nom et Prénom -->
+        <HBox spacing="15">
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Nom *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                <TextField fx:id="nomField" promptText="Entrez le nom"
+                           style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            </VBox>
+
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Prénom *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                <TextField fx:id="prenomField" promptText="Entrez le prénom"
+                           style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Ligne 2 : Spécialité -->
+        <VBox spacing="8">
+            <Label text="Spécialité *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+            <TextField fx:id="specialiteField" promptText="Ex: Musculation, Cardio, Yoga, CrossFit..."
+                       style="-fx-font-size: 14px; -fx-padding: 10;"/>
+        </VBox>
+
+        <!-- Ligne 3 : Email et Téléphone -->
+        <HBox spacing="15">
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Email *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                <TextField fx:id="emailField" promptText="exemple@email.com"
+                           style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            </VBox>
+
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Téléphone *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                <TextField fx:id="telephoneField" promptText="06XXXXXXXX"
+                           style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Note champs obligatoires -->
+        <Label text="* Champs obligatoires"
+               style="-fx-text-fill: #dc3545; -fx-font-size: 12px; -fx-font-style: italic;"/>
+
+        <!-- Boutons formulaire -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="💾 Enregistrer" onAction="#handleEnregistrer"
+                    style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 12 40; -fx-cursor: hand;"/>
+
+            <Button text="❌ Annuler" onAction="#handleAnnuler"
+                    style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-size: 15px; -fx-padding: 12 40; -fx-cursor: hand;"/>
+        </HBox>
+    </VBox>
+
+</VBox>
