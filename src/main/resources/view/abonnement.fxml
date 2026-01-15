@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.salledesport.controller.AbonnementController"
+      spacing="20" style="-fx-padding: 25; -fx-background-color: #f8f9fa;">
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="🎫 Gestion des Abonnements" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="totalAbonnementsLabel" text="Total: 0 abonnement(s)"
+               style="-fx-font-size: 14px; -fx-text-fill: #6c757d;"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- Boutons actions -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button text="➕ Nouvel Abonnement" onAction="#handleNouvelAbonnement"
+                style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 25; -fx-cursor: hand;"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Label fx:id="selectionLabel" text="Aucune sélection"
+               style="-fx-text-fill: #6c757d; -fx-font-style: italic;"/>
+    </HBox>
+
+    <!-- TableView -->
+    <TableView fx:id="abonnementTable" VBox.vgrow="ALWAYS"
+               style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 5;">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+            <TableColumn fx:id="typeColumn" text="Type" prefWidth="200"/>
+            <TableColumn fx:id="prixColumn" text="Prix (MAD)" prefWidth="150"/>
+            <TableColumn fx:id="dureeColumn" text="Durée (mois)" prefWidth="150"/>
+            <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="400"/>
+        </columns>
+    </TableView>
+
+    <!-- Boutons d'action -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button text="✏️ Modifier" onAction="#handleModifier"
+                style="-fx-background-color: #ffc107; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 25; -fx-cursor: hand;"/>
+
+        <Button text="🗑️ Supprimer" onAction="#handleSupprimer"
+                style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 25; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- Formulaire (caché par défaut) -->
+    <VBox fx:id="formulaireBox" spacing="15"
+          style="-fx-background-color: white; -fx-padding: 25; -fx-border-color: #007bff; -fx-border-width: 2; -fx-border-radius: 5;"
+          visible="false" managed="false">
+
+        <HBox alignment="CENTER_LEFT">
+            <Label fx:id="formulaireTitreLabel" text="➕ Nouvel Abonnement"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #007bff;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="✕" onAction="#handleAnnuler"
+                    style="-fx-background-color: transparent; -fx-text-fill: #dc3545; -fx-font-size: 20px; -fx-cursor: hand;"/>
+        </HBox>
+
+        <Separator/>
+
+        <!-- Ligne 1 : Type et Prix -->
+        <HBox spacing="15">
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Type d'abonnement *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                <TextField fx:id="typeField" promptText="Ex: Mensuel, Trimestriel, Annuel..."
+                           style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            </VBox>
+
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Prix (MAD) *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                <TextField fx:id="prixField" promptText="Ex: 300.00"
+                           style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Ligne 2 : Durée -->
+        <VBox spacing="8">
+            <Label text="Durée (en mois) *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+            <TextField fx:id="dureeField" promptText="Ex: 1, 3, 6, 12..."
+                       style="-fx-font-size: 14px; -fx-padding: 10;"/>
+        </VBox>
+
+        <!-- Ligne 3 : Description -->
+        <VBox spacing="8">
+            <Label text="Description" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+            <TextArea fx:id="descriptionArea" promptText="Description détaillée de l'abonnement..."
+                      prefHeight="100" wrapText="true"
+                      style="-fx-font-size: 14px; -fx-padding: 10;"/>
+        </VBox>
+
+        <!-- Note champs obligatoires -->
+        <Label text="* Champs obligatoires"
+               style="-fx-text-fill: #dc3545; -fx-font-size: 12px; -fx-font-style: italic;"/>
+
+        <!-- Boutons formulaire -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="💾 Enregistrer" onAction="#handleEnregistrer"
+                    style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 12 40; -fx-cursor: hand;"/>
+
+            <Button text="❌ Annuler" onAction="#handleAnnuler"
+                    style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-size: 15px; -fx-padding: 12 40; -fx-cursor: hand;"/>
+        </HBox>
+    </VBox>
+
+</VBox>
