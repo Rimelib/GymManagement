@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.salledesport.controller.MainLayoutController"
+            stylesheets="@../css/main-layout.css"
+            styleClass="root">
+
+    <!-- SIDEBAR NAVIGATION PERSISTANTE -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="260" spacing="0">
+            <!-- Logo Section -->
+            <VBox alignment="CENTER" spacing="12" styleClass="logo-section">
+                <padding>
+                    <Insets top="30" right="20" bottom="25" left="20"/>
+                </padding>
+                <Label text="💪" styleClass="logo-emoji">
+                    <font><Font size="42"/></font>
+                </Label>
+                <Label text="GYM MANAGER" styleClass="logo-text">
+                    <font><Font name="System Bold" size="17"/></font>
+                </Label>
+                <Label text="Gestion de salle de sport" styleClass="logo-subtitle">
+                    <font><Font size="11"/></font>
+                </Label>
+            </VBox>
+
+            <!-- Separator -->
+            <Separator styleClass="sidebar-separator">
+                <padding>
+                    <Insets top="0" right="15" bottom="0" left="15"/>
+                </padding>
+            </Separator>
+
+            <!-- Menu Navigation -->
+            <VBox spacing="6" VBox.vgrow="ALWAYS" styleClass="menu-section">
+                <padding>
+                    <Insets top="20" right="15" bottom="20" left="15"/>
+                </padding>
+
+                <Label text="MENU PRINCIPAL" styleClass="menu-category">
+                    <font><Font size="10"/></font>
+                    <padding><Insets bottom="10"/></padding>
+                </Label>
+
+                <Button fx:id="btnDashboard" text="📊  Dashboard"
+                        onAction="#handleNavigateDashboard"
+                        styleClass="menu-btn menu-btn-active"
+                        maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="13"/></font>
+                    <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
+                </Button>
+
+                <Button fx:id="btnMembres" text="👥  Membres"
+                        onAction="#handleNavigateMembres"
+                        styleClass="menu-btn"
+                        maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="13"/></font>
+                    <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
+                </Button>
+
+                <Button fx:id="btnCoachs" text="🎯  Coachs"
+                        onAction="#handleNavigateCoachs"
+                        styleClass="menu-btn"
+                        maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="13"/></font>
+                    <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
+                </Button>
+
+                <Button fx:id="btnSeances" text="🏋️  Séances"
+                        onAction="#handleNavigateSeances"
+                        styleClass="menu-btn"
+                        maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="13"/></font>
+                    <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
+                </Button>
+
+                <Button fx:id="btnAbonnements" text="📋  Abonnements"
+                        onAction="#handleNavigateAbonnements"
+                        styleClass="menu-btn"
+                        maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="13"/></font>
+                    <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
+                </Button>
+
+                <Button fx:id="btnPaiements" text="💳  Paiements"
+                        onAction="#handleNavigatePaiements"
+                        styleClass="menu-btn"
+                        maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="13"/></font>
+                    <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
+                </Button>
+
+                <!-- Spacer -->
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <!-- Settings Section -->
+                <Separator styleClass="sidebar-separator">
+                    <padding>
+                        <Insets top="10" bottom="10"/>
+                    </padding>
+                </Separator>
+
+                <Button text="⚙️  Paramètres"
+                        styleClass="menu-btn menu-btn-secondary"
+                        maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="13"/></font>
+                    <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
+                </Button>
+
+                <Button text="🚪  Déconnexion"
+                        onAction="#handleDeconnexion"
+                        styleClass="menu-btn menu-btn-logout"
+                        maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="13"/></font>
+                    <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
+                </Button>
+            </VBox>
+
+            <!-- User Info Footer -->
+            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="user-info">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="👤" styleClass="user-avatar">
+                    <font><Font size="24"/></font>
+                </Label>
+                <VBox spacing="2">
+                    <Label text="Admin User" styleClass="user-name">
+                        <font><Font name="System Bold" size="12"/></font>
+                    </Label>
+                    <Label text="Administrateur" styleClass="user-role">
+                        <font><Font size="10"/></font>
+                    </Label>
+                </VBox>
+            </HBox>
+        </VBox>
+    </left>
+
+    <!-- ZONE DE CONTENU DYNAMIQUE -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <!-- Le contenu des pages sera chargé ici -->
+        </StackPane>
+    </center>
+
+</BorderPane>
