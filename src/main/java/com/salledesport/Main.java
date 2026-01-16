@@ -11,8 +11,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Charger le fichier FXML du Dashboard
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
+            // Charger le layout principal avec sidebar persistante
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainLayout.fxml"));
             Parent root = loader.load();
 
             // Créer la scène
@@ -23,10 +23,11 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.setMinWidth(1200);
             primaryStage.setMinHeight(800);
-            primaryStage.setMaximized(true); // Démarrer en plein écran
+            primaryStage.setMaximized(true);
             primaryStage.show();
 
             System.out.println("✅ Application lancée avec succès !");
+            System.out.println("📌 Layout principal chargé avec sidebar persistante");
 
         } catch (Exception e) {
             System.err.println("❌ Erreur lors du lancement de l'application:");

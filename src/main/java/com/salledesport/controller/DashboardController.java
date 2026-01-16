@@ -11,20 +11,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.salledesport.dao.*;
 import com.salledesport.model.*;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
-import java.io.IOException;
-
 
 public class DashboardController {
 
@@ -329,61 +322,5 @@ public class DashboardController {
 
         public String getMembreNom() { return membreNom; }
         public void setMembreNom(String membreNom) { this.membreNom = membreNom; }
-    }
-
-    // ============ NAVIGATION ============
-
-    @FXML
-    private void handleNavigateMembres() {
-        naviguerVers("/view/membre.fxml");
-    }
-
-    @FXML
-    private void handleNavigateCoachs() {
-        naviguerVers("/view/coach.fxml");
-    }
-
-    @FXML
-    private void handleNavigateSeances() {
-        naviguerVers("/view/seance.fxml");
-    }
-
-    @FXML
-    private void handleNavigateAbonnements() {
-        naviguerVers("/view/abonnement.fxml");
-    }
-
-    @FXML
-    private void handleNavigatePaiements() {
-        naviguerVers("/com/salledesport/view/paiement.fxml");
-    }
-
-    @FXML
-    private void handleDeconnexion() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Déconnexion");
-        alert.setHeaderText("Voulez-vous vraiment vous déconnecter ?");
-        alert.setContentText("Vous serez redirigé vers la page de connexion.");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            naviguerVers("/com/salledesport/view/Login.fxml");
-        }
-    }
-
-    private void naviguerVers(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) dateLabel.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            System.err.println("❌ Erreur de navigation: " + e.getMessage());
-            e.printStackTrace();
-            afficherErreur("Erreur de navigation", "Impossible de charger la page: " + fxmlPath);
-        }
     }
 }

@@ -1,0 +1,205 @@
+/* ============================================
+   🏋️ GYM MANAGEMENT - PREMIUM STYLE
+   Palette: Deep Blue Sidebar + Vibrant Accents
+   Compatible avec JavaFX CSS
+============================================ */
+
+/* ============ ROOT ============ */
+.root {
+    -fx-background-color: #0a0f1e;
+    -fx-font-family: "Segoe UI", "Inter", system-ui, -apple-system;
+}
+
+/* ============ SIDEBAR - DEEP BLUE PREMIUM ============ */
+.sidebar {
+    -fx-background-color:
+            linear-gradient(to bottom, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 25, 0.0, 8, 0);
+    -fx-border-color: rgba(59, 130, 246, 0.1);
+    -fx-border-width: 0 1 0 0;
+}
+
+/* ============ LOGO SECTION - ANIMATED ============ */
+.logo-section {
+    -fx-background-color: rgba(59, 130, 246, 0.12);
+    -fx-background-radius: 16;
+    -fx-border-color: #3b82f6;
+    -fx-border-width: 2;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.3), 15, 0.0, 0, 5);
+}
+
+.logo-emoji {
+    -fx-effect: dropshadow(gaussian, rgba(249, 115, 22, 0.6), 12, 0.0, 0, 3);
+}
+
+.logo-text {
+    -fx-text-fill: #60a5fa;
+    -fx-letter-spacing: 2.5;
+    -fx-font-weight: 900;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.4), 8, 0.0, 0, 2);
+}
+
+.logo-subtitle {
+    -fx-text-fill: #94a3b8;
+    -fx-font-style: italic;
+    -fx-font-size: 11px;
+}
+
+/* ============ SEPARATORS - GLOWING ============ */
+.sidebar-separator {
+    -fx-background-color: rgba(59, 130, 246, 0.3);
+    -fx-pref-height: 1;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.5), 5, 0.0, 0, 0);
+}
+
+/* ============ MENU SECTION ============ */
+.menu-section {
+    -fx-background-color: transparent;
+}
+
+.menu-category {
+    -fx-text-fill: #64748b;
+    -fx-font-weight: 700;
+    -fx-font-size: 10px;
+    -fx-letter-spacing: 1.5;
+    -fx-padding: 0 8 0 8;
+}
+
+/* ============ MENU BUTTONS - SLEEK & MODERN ============ */
+.menu-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94a3b8;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-font-weight: 500;
+    -fx-font-size: 13px;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.menu-btn:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.1);
+    -fx-text-fill: #60a5fa;
+    -fx-border-color: rgba(59, 130, 246, 0.2);
+    -fx-scale-x: 1.02;
+    -fx-translate-x: 4;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.2), 10, 0.0, 0, 3);
+}
+
+/* ============ ACTIVE BUTTON - BLUE GLOW ============ */
+.menu-btn-active {
+    -fx-background-color:
+            linear-gradient(to right, #3b82f6 0%, #2563eb 100%);
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-border-color: rgba(96, 165, 250, 0.4);
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.5), 15, 0.0, 0, 5);
+}
+
+.menu-btn-active:hover {
+    -fx-background-color:
+            linear-gradient(to right, #2563eb 0%, #1d4ed8 100%);
+    -fx-scale-x: 1.0;
+    -fx-translate-x: 0;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.7), 20, 0.0, 0, 6);
+}
+
+/* ============ SECONDARY BUTTON ============ */
+.menu-btn-secondary {
+    -fx-text-fill: #94a3b8;
+}
+
+.menu-btn-secondary:hover {
+    -fx-background-color: rgba(156, 163, 175, 0.1);
+    -fx-text-fill: #e5e7eb;
+    -fx-border-color: rgba(156, 163, 175, 0.2);
+}
+
+/* ============ LOGOUT BUTTON - SUBTLE RED ============ */
+.menu-btn-logout {
+    -fx-background-color: rgba(239, 68, 68, 0.08);
+    -fx-text-fill: #f87171;
+    -fx-border-color: rgba(239, 68, 68, 0.15);
+}
+
+.menu-btn-logout:hover {
+    -fx-background-color:
+            linear-gradient(to right, #ef4444 0%, #dc2626 100%);
+    -fx-text-fill: white;
+    -fx-border-color: rgba(248, 113, 113, 0.4);
+    -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.4), 12, 0.0, 0, 4);
+}
+
+/* ============ USER INFO - GRADIENT CARD ============ */
+.user-info {
+    -fx-background-color: rgba(59, 130, 246, 0.12);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(59, 130, 246, 0.2);
+    -fx-border-width: 1;
+    -fx-border-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0.0, 0, 3);
+}
+
+.user-avatar {
+    -fx-background-color:
+            linear-gradient(to bottom, #3b82f6 0%, #8b5cf6 100%);
+    -fx-background-radius: 50%;
+    -fx-padding: 10;
+    -fx-min-width: 44;
+    -fx-min-height: 44;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.5), 10, 0.0, 0, 3);
+}
+
+.user-name {
+    -fx-text-fill: #f1f5f9;
+    -fx-font-weight: 700;
+}
+
+.user-role {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 10px;
+}
+
+/* ============ CONTENT AREA ============ */
+.content-area {
+    -fx-background-color: #0a0f1e;
+}
+
+/* ============ SCROLLBAR - MODERN THIN ============ */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 6;
+    -fx-padding: 2;
+}
+
+.scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: rgba(59, 130, 246, 0.05);
+    -fx-background-radius: 3;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(59, 130, 246, 0.4);
+    -fx-background-radius: 3;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.6);
+}
+
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-pref-height: 0;
+}
