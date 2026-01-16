@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
-public class PaiementControllers {
+public class PaiementController {
 
     // ============ COMPOSANTS FXML ============
 
@@ -130,7 +130,7 @@ public class PaiementControllers {
                     Abonnement abo = abonnementDAO.getById(membre.getAbonnementId());
                     if (abo != null) {
                         abonnementComboBox.setValue(abo);
-                        montantField.setText(abo.getPrix().toString());
+                        montantField.setText(String.valueOf(abo.getPrix()));
                     }
                 }
             }
