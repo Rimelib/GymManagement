@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.salledesport.controller.LoginController"
+            prefHeight="600" prefWidth="900"
+            style="-fx-background-color: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);">
+
+    <center>
+        <VBox alignment="CENTER" spacing="0">
+            <!-- Panneau de connexion -->
+            <VBox alignment="CENTER" spacing="25"
+                  style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 50; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 5);"
+                  maxWidth="450">
+
+                <!-- Logo / Titre -->
+                <VBox alignment="CENTER" spacing="10">
+                    <Label text="🏋️" style="-fx-font-size: 60px;"/>
+                    <Label text="SALLE DE SPORT"
+                           style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #667eea;"/>
+                    <Label text="Espace Administrateur"
+                           style="-fx-font-size: 14px; -fx-text-fill: #6c757d;"/>
+                </VBox>
+
+                <Separator prefWidth="350"/>
+
+                <!-- Formulaire de connexion -->
+                <VBox spacing="20" alignment="CENTER">
+                    <!-- Nom d'utilisateur -->
+                    <VBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="Nom d'utilisateur"
+                               style="-fx-font-weight: bold; -fx-text-fill: #495057; -fx-font-size: 14px;"/>
+                        <HBox spacing="10" alignment="CENTER_LEFT"
+                              style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-padding: 12;">
+                            <Label text="👤" style="-fx-font-size: 18px;"/>
+                            <TextField fx:id="usernameField"
+                                       promptText="Entrez votre nom d'utilisateur"
+                                       prefWidth="300"
+                                       style="-fx-background-color: transparent; -fx-font-size: 14px; -fx-border-width: 0;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Mot de passe -->
+                    <VBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="Mot de passe"
+                               style="-fx-font-weight: bold; -fx-text-fill: #495057; -fx-font-size: 14px;"/>
+                        <HBox spacing="10" alignment="CENTER_LEFT"
+                              style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-padding: 12;">
+                            <Label text="🔒" style="-fx-font-size: 18px;"/>
+                            <PasswordField fx:id="passwordField"
+                                           promptText="Entrez votre mot de passe"
+                                           prefWidth="300"
+                                           style="-fx-background-color: transparent; -fx-font-size: 14px; -fx-border-width: 0;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Message d'erreur/succès -->
+                    <Label fx:id="messageLabel" text=""
+                           wrapText="true" textAlignment="CENTER"
+                           style="-fx-font-size: 13px; -fx-padding: 10;"/>
+
+                    <!-- Bouton de connexion -->
+                    <Button fx:id="connexionButton" text="SE CONNECTER" onAction="#handleConnexion"
+                            prefWidth="350" prefHeight="45"
+                            style="-fx-background-color: #667eea; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;">
+                        <effect>
+                            <javafx.scene.effect.DropShadow color="rgba(102, 126, 234, 0.4)" radius="10" offsetY="3"/>
+                        </effect>
+                    </Button>
+
+                    <!-- Lien mot de passe oublié -->
+                    <Hyperlink text="Mot de passe oublié ?" onAction="#handleMotDePasseOublie"
+                               style="-fx-text-fill: #667eea; -fx-font-size: 12px;"/>
+                </VBox>
+
+                <Separator prefWidth="350"/>
+
+                <!-- Bouton Quitter -->
+                <Button text="❌ Quitter" onAction="#handleQuitter"
+                        prefWidth="350" prefHeight="35"
+                        style="-fx-background-color: transparent; -fx-text-fill: #dc3545; -fx-font-size: 13px; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 8; -fx-cursor: hand;"/>
+
+            </VBox>
+        </VBox>
+    </center>
+
+    <!-- Pied de page -->
+    <bottom>
+        <VBox alignment="CENTER" spacing="5" style="-fx-padding: 20;">
+            <Label text="© 2026 - Gestion Salle de Sport"
+                   style="-fx-text-fill: white; -fx-font-size: 12px;"/>
+            <Label text="Développé par Rim EL IBRAHIMI & Aya AKHALOUI"
+                   style="-fx-text-fill: rgba(255,255,255,0.8); -fx-font-size: 11px;"/>
+        </VBox>
+    </bottom>
+
+</BorderPane>
