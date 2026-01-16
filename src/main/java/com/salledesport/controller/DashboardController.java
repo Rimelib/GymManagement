@@ -335,27 +335,27 @@ public class DashboardController {
 
     @FXML
     private void handleNavigateMembres() {
-        naviguerVers("/com/salledesport/view/Membre.fxml");
+        naviguerVers("/view/membre.fxml");
     }
 
     @FXML
     private void handleNavigateCoachs() {
-        naviguerVers("/com/salledesport/view/Coach.fxml");
+        naviguerVers("/view/coach.fxml");
     }
 
     @FXML
     private void handleNavigateSeances() {
-        naviguerVers("/com/salledesport/view/Seance.fxml");
+        naviguerVers("/view/seance.fxml");
     }
 
     @FXML
     private void handleNavigateAbonnements() {
-        naviguerVers("/com/salledesport/view/Abonnement.fxml");
+        naviguerVers("/view/abonnement.fxml");
     }
 
     @FXML
     private void handleNavigatePaiements() {
-        naviguerVers("/com/salledesport/view/Paiement.fxml");
+        naviguerVers("/com/salledesport/view/paiement.fxml");
     }
 
     @FXML
