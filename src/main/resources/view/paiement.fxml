@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.salledesport.controller.PaiementController"
+      spacing="20" style="-fx-padding: 25; -fx-background-color: #f8f9fa;">
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="💰 Gestion des Paiements" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox alignment="CENTER_RIGHT" spacing="5">
+            <Label fx:id="totalPaiementsLabel" text="Total: 0 paiement(s)"
+                   style="-fx-font-size: 14px; -fx-text-fill: #6c757d;"/>
+            <Label fx:id="totalRevenusLabel" text="Revenus totaux: 0.00 DH"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #28a745;"/>
+        </VBox>
+    </HBox>
+
+    <Separator/>
+
+    <!-- Barre de recherche et actions -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <TextField fx:id="rechercheField"
+                   promptText="🔍 Rechercher par méthode ou date..."
+                   prefWidth="400"
+                   style="-fx-font-size: 14px; -fx-padding: 10;"/>
+
+        <Button text="Rechercher" onAction="#handleRechercher"
+                style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-cursor: hand;"/>
+
+        <Button text="Réinitialiser" onAction="#handleReinitialiser"
+                style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-cursor: hand;"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="➕ Nouveau Paiement" onAction="#handleNouveauPaiement"
+                style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 25; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- TableView -->
+    <TableView fx:id="paiementTable" VBox.vgrow="ALWAYS"
+               style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 5;">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+            <TableColumn fx:id="montantColumn" text="Montant" prefWidth="120"/>
+            <TableColumn fx:id="dateColumn" text="Date" prefWidth="120"/>
+            <TableColumn fx:id="membreColumn" text="Membre" prefWidth="200"/>
+            <TableColumn fx:id="abonnementColumn" text="Abonnement" prefWidth="150"/>
+            <TableColumn fx:id="methodeColumn" text="Méthode" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <!-- Boutons d'action -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button text="✏️ Modifier" onAction="#handleModifier"
+                style="-fx-background-color: #ffc107; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 25; -fx-cursor: hand;"/>
+
+        <Button text="🗑️ Supprimer" onAction="#handleSupprimer"
+                style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 25; -fx-cursor: hand;"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Label fx:id="selectionLabel" text="Aucune sélection"
+               style="-fx-text-fill: #6c757d; -fx-font-style: italic;"/>
+    </HBox>
+
+    <!-- Formulaire (caché par défaut) -->
+    <VBox fx:id="formulaireBox" spacing="15"
+          style="-fx-background-color: white; -fx-padding: 25; -fx-border-color: #007bff; -fx-border-width: 2; -fx-border-radius: 5;"
+          visible="false" managed="false">
+
+        <HBox alignment="CENTER_LEFT">
+            <Label fx:id="formulaireTitreLabel" text="➕ Nouveau Paiement"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #007bff;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="✕" onAction="#handleAnnuler"
+                    style="-fx-background-color: transparent; -fx-text-fill: #dc3545; -fx-font-size: 20px; -fx-cursor: hand;"/>
+        </HBox>
+
+        <Separator/>
+
+        <!-- Ligne 1 : Montant et Date -->
+        <HBox spacing="15">
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Montant (DH) *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                <TextField fx:id="montantField" promptText="Ex: 300.00"
+                           style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            </VBox>
+
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Date *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                <DatePicker fx:id="datePicker" promptText="Sélectionnez une date"
+                            prefWidth="250"
+                            style="-fx-font-size: 14px;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Ligne 2 : Membre -->
+        <VBox spacing="8">
+            <Label text="Membre *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+            <ComboBox fx:id="membreComboBox" promptText="Sélectionnez un membre"
+                      prefWidth="500"
+                      style="-fx-font-size: 14px;"/>
+        </VBox>
+
+        <!-- Ligne 3 : Abonnement et Méthode -->
+        <HBox spacing="15">
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Abonnement *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                <ComboBox fx:id="abonnementComboBox" promptText="Sélectionnez un abonnement"
+                          prefWidth="300"
+                          style="-fx-font-size: 14px;"/>
+            </VBox>
+
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Méthode de paiement *" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                <ComboBox fx:id="methodeComboBox" promptText="Sélectionnez une méthode"
+                          prefWidth="300"
+                          style="-fx-font-size: 14px;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Note champs obligatoires -->
+        <Label text="* Champs obligatoires"
+               style="-fx-text-fill: #dc3545; -fx-font-size: 12px; -fx-font-style: italic;"/>
+
+        <!-- Boutons formulaire -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="💾 Enregistrer" onAction="#handleEnregistrer"
+                    style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 12 40; -fx-cursor: hand;"/>
+
+            <Button text="❌ Annuler" onAction="#handleAnnuler"
+                    style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-size: 15px; -fx-padding: 12 40; -fx-cursor: hand;"/>
+        </HBox>
+    </VBox>
+
+</VBox>
