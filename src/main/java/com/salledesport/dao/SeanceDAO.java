@@ -249,4 +249,46 @@ public class SeanceDAO {
 
         return seances;
     }
+
+    // Récupérer les séances d'aujourd'hui pour le dashboard
+    public List<Seance> getSeancesAujourdhui() {
+        List<Seance> seances = new ArrayList<>();
+        String sql = "SELECT * FROM Seance WHERE date = ? ORDER BY heure ASC";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setDate(1, Date.valueOf(java.time.LocalDate.now()));
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Seance s = new Seance();
+                s.setId(rs.getInt("id_seance"));
+
+                Date date = rs.getDate("date");
+                if (date != null) {
+                    s.setDate(date.toLocalDate());
+                }
+
+                Time heure = rs.getTime("heure");
+                if (heure != null) {
+                    s.setHeure(heure.toLocalTime());
+                }
+
+                s.setType(rs.getString("type"));
+                s.setCoachId(rs.getInt("coach_id"));
+                s.setMembreId(rs.getInt("membre_id"));
+
+                seances.add(s);
+            }
+
+            System.out.println("✅ " + seances.size() + " séance(s) aujourd'hui");
+
+        } catch (SQLException e) {
+            System.err.println("❌ Erreur récupération séances du jour: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return seances;
+    }
 }

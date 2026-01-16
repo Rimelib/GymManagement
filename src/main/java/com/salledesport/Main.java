@@ -1,25 +1,41 @@
 package com.salledesport;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage stage) {
-        Label label = new Label("✅ JavaFX fonctionne !");
-        StackPane root = new StackPane(label);
-        Scene scene = new Scene(root, 400, 300);
+    public void start(Stage primaryStage) {
+        try {
+            // Charger le fichier FXML du Dashboard
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
+            Parent root = loader.load();
 
-        stage.setTitle("Test JavaFX");
-        stage.setScene(scene);
-        stage.show();
+            // Créer la scène
+            Scene scene = new Scene(root, 1400, 900);
+
+            // Configurer la fenêtre principale
+            primaryStage.setTitle("💪 Gym Management System");
+            primaryStage.setScene(scene);
+            primaryStage.setMinWidth(1200);
+            primaryStage.setMinHeight(800);
+            primaryStage.setMaximized(true); // Démarrer en plein écran
+            primaryStage.show();
+
+            System.out.println("✅ Application lancée avec succès !");
+
+        } catch (Exception e) {
+            System.err.println("❌ Erreur lors du lancement de l'application:");
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
+        System.out.println("🚀 Démarrage de Gym Management System...");
         launch(args);
     }
 }

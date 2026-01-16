@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.DropShadow?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.salledesport.controller.DashboardController"
+            stylesheets="@../css/dashboard.css"
+            styleClass="root">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="250" spacing="10">
+            <padding>
+                <Insets top="20" right="0" bottom="20" left="0"/>
+            </padding>
+
+            <!-- Logo / Titre -->
+            <VBox alignment="CENTER" spacing="10" styleClass="sidebar-header">
+                <padding>
+                    <Insets top="10" right="20" bottom="20" left="20"/>
+                </padding>
+                <Label text="💪" styleClass="logo-icon">
+                    <font><Font size="50"/></font>
+                </Label>
+                <Label text="GYM MANAGER" styleClass="logo-text">
+                    <font><Font name="System Bold" size="18"/></font>
+                </Label>
+            </VBox>
+
+            <!-- Séparateur -->
+            <Separator styleClass="menu-separator"/>
+
+            <!-- Menu de navigation -->
+            <VBox spacing="5" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+
+                <Button text="📊  Dashboard" styleClass="menu-btn menu-btn-active" maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font name="System Bold" size="14"/></font>
+                    <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                </Button>
+
+                <Button text="👥  Membres" onAction="#handleNavigateMembres" styleClass="menu-btn" maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="14"/></font>
+                    <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                </Button>
+
+                <Button text="🎯  Coachs" onAction="#handleNavigateCoachs" styleClass="menu-btn" maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="14"/></font>
+                    <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                </Button>
+
+                <Button text="🏋️  Séances" onAction="#handleNavigateSeances" styleClass="menu-btn" maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="14"/></font>
+                    <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                </Button>
+
+                <Button text="📋  Abonnements" onAction="#handleNavigateAbonnements" styleClass="menu-btn" maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="14"/></font>
+                    <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                </Button>
+
+                <Button text="💳  Paiements" onAction="#handleNavigatePaiements" styleClass="menu-btn" maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="14"/></font>
+                    <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                </Button>
+
+                <!-- Spacer -->
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <!-- Bouton Déconnexion -->
+                <Separator styleClass="menu-separator"/>
+                <Button text="🚪  Déconnexion" onAction="#handleDeconnexion" styleClass="menu-btn menu-btn-logout" maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <font><Font size="14"/></font>
+                    <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                </Button>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- CONTENU PRINCIPAL -->
+    <center>
+        <BorderPane styleClass="main-content">
+            <!-- En-tête -->
+            <top>
+                <VBox styleClass="header-container">
+                    <HBox alignment="CENTER_LEFT" spacing="20">
+                        <padding>
+                            <Insets top="25" right="35" bottom="25" left="35"/>
+                        </padding>
+
+                        <VBox spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="⚡ TABLEAU DE BORD" styleClass="header-title">
+                                <font>
+                                    <Font name="System Bold" size="32"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="dateLabel" text="Lundi 01 janvier 2025" styleClass="header-date">
+                                <font>
+                                    <Font name="System Bold" size="15"/>
+                                </font>
+                            </Label>
+                        </VBox>
+
+                        <Button text="🔄 ACTUALISER" onAction="#handleActualiser" styleClass="btn-refresh">
+                            <font>
+                                <Font name="System Bold" size="14"/>
+                            </font>
+                        </Button>
+                    </HBox>
+                </VBox>
+            </top>
+
+            <!-- Contenu scrollable -->
+            <center>
+                <ScrollPane fitToWidth="true" styleClass="scroll-pane" hbarPolicy="NEVER">
+                    <VBox spacing="25">
+                        <padding>
+                            <Insets top="25" right="35" bottom="25" left="35"/>
+                        </padding>
+
+                        <!-- Cartes statistiques -->
+                        <GridPane hgap="20" vgap="20">
+                            <!-- Ligne 1 -->
+                            <VBox styleClass="stat-card stat-card-primary" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <padding>
+                                    <Insets top="25" right="25" bottom="25" left="25"/>
+                                </padding>
+                                <HBox alignment="CENTER_LEFT" spacing="15">
+                                    <Label text="👥" styleClass="stat-icon">
+                                        <font><Font size="40"/></font>
+                                    </Label>
+                                    <VBox spacing="5">
+                                        <Label text="MEMBRES TOTAL" styleClass="stat-label-white">
+                                            <font><Font name="System Bold" size="12"/></font>
+                                        </Label>
+                                        <Label fx:id="totalMembresLabel" text="0" styleClass="stat-value-white">
+                                            <font><Font name="System Bold" size="38"/></font>
+                                        </Label>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+
+                            <VBox styleClass="stat-card stat-card-success" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <padding>
+                                    <Insets top="25" right="25" bottom="25" left="25"/>
+                                </padding>
+                                <HBox alignment="CENTER_LEFT" spacing="15">
+                                    <Label text="🏋️" styleClass="stat-icon">
+                                        <font><Font size="40"/></font>
+                                    </Label>
+                                    <VBox spacing="5">
+                                        <Label text="SÉANCES AUJOURD'HUI" styleClass="stat-label-white">
+                                            <font><Font name="System Bold" size="12"/></font>
+                                        </Label>
+                                        <Label fx:id="seancesAujourdhuiLabel" text="0" styleClass="stat-value-white">
+                                            <font><Font name="System Bold" size="38"/></font>
+                                        </Label>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+
+                            <VBox styleClass="stat-card stat-card-warning" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                <padding>
+                                    <Insets top="25" right="25" bottom="25" left="25"/>
+                                </padding>
+                                <HBox alignment="CENTER_LEFT" spacing="15">
+                                    <Label text="💰" styleClass="stat-icon">
+                                        <font><Font size="40"/></font>
+                                    </Label>
+                                    <VBox spacing="5">
+                                        <Label text="REVENUS TOTAUX" styleClass="stat-label-white">
+                                            <font><Font name="System Bold" size="12"/></font>
+                                        </Label>
+                                        <Label fx:id="revenusTotauxLabel" text="0.00 DH" styleClass="stat-value-white">
+                                            <font><Font name="System Bold" size="38"/></font>
+                                        </Label>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+
+                            <!-- Ligne 2 -->
+                            <VBox styleClass="stat-card stat-card-info" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <padding>
+                                    <Insets top="25" right="25" bottom="25" left="25"/>
+                                </padding>
+                                <HBox alignment="CENTER_LEFT" spacing="15">
+                                    <Label text="🎯" styleClass="stat-icon">
+                                        <font><Font size="40"/></font>
+                                    </Label>
+                                    <VBox spacing="5">
+                                        <Label text="COACHS ACTIFS" styleClass="stat-label-white">
+                                            <font><Font name="System Bold" size="12"/></font>
+                                        </Label>
+                                        <Label fx:id="totalCoachsLabel" text="0" styleClass="stat-value-white">
+                                            <font><Font name="System Bold" size="38"/></font>
+                                        </Label>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+
+                            <VBox styleClass="stat-card stat-card-purple" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <padding>
+                                    <Insets top="25" right="25" bottom="25" left="25"/>
+                                </padding>
+                                <HBox alignment="CENTER_LEFT" spacing="15">
+                                    <Label text="📋" styleClass="stat-icon">
+                                        <font><Font size="40"/></font>
+                                    </Label>
+                                    <VBox spacing="5">
+                                        <Label text="ABONNEMENTS" styleClass="stat-label-white">
+                                            <font><Font name="System Bold" size="12"/></font>
+                                        </Label>
+                                        <Label fx:id="totalAbonnementsLabel" text="0" styleClass="stat-value-white">
+                                            <font><Font name="System Bold" size="38"/></font>
+                                        </Label>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+
+                            <VBox styleClass="stat-card stat-card-danger" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                <padding>
+                                    <Insets top="25" right="25" bottom="25" left="25"/>
+                                </padding>
+                                <HBox alignment="CENTER_LEFT" spacing="15">
+                                    <Label text="💳" styleClass="stat-icon">
+                                        <font><Font size="40"/></font>
+                                    </Label>
+                                    <VBox spacing="5">
+                                        <Label text="PAIEMENTS" styleClass="stat-label-white">
+                                            <font><Font name="System Bold" size="12"/></font>
+                                        </Label>
+                                        <Label fx:id="totalPaiementsLabel" text="0" styleClass="stat-value-white">
+                                            <font><Font name="System Bold" size="38"/></font>
+                                        </Label>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS"/>
+                                <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS"/>
+                                <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS"/>
+                            </columnConstraints>
+                        </GridPane>
+
+                        <!-- Tables -->
+                        <GridPane hgap="20" vgap="20">
+                            <!-- Membres récents -->
+                            <VBox styleClass="table-container" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="table-header">
+                                    <Label text="📊" styleClass="table-icon">
+                                        <font><Font size="20"/></font>
+                                    </Label>
+                                    <Label text="MEMBRES RÉCENTS" styleClass="table-title">
+                                        <font><Font name="System Bold" size="18"/></font>
+                                    </Label>
+                                </HBox>
+                                <TableView fx:id="membresRecentsTable" VBox.vgrow="ALWAYS" styleClass="modern-table">
+                                    <columns>
+                                        <TableColumn fx:id="membreNomColumn" text="NOM" prefWidth="120"/>
+                                        <TableColumn fx:id="membrePrenomColumn" text="PRÉNOM" prefWidth="120"/>
+                                        <TableColumn fx:id="membreEmailColumn" text="EMAIL" prefWidth="180"/>
+                                        <TableColumn fx:id="membreDateColumn" text="INSCRIPTION" prefWidth="130"/>
+                                    </columns>
+                                    <columnResizePolicy>
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                    </columnResizePolicy>
+                                </TableView>
+                            </VBox>
+
+                            <!-- Séances du jour -->
+                            <VBox styleClass="table-container" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="table-header">
+                                    <Label text="📅" styleClass="table-icon">
+                                        <font><Font size="20"/></font>
+                                    </Label>
+                                    <Label text="SÉANCES DU JOUR" styleClass="table-title">
+                                        <font><Font name="System Bold" size="18"/></font>
+                                    </Label>
+                                </HBox>
+                                <TableView fx:id="seancesDuJourTable" VBox.vgrow="ALWAYS" styleClass="modern-table">
+                                    <columns>
+                                        <TableColumn fx:id="seanceHeureColumn" text="HEURE" prefWidth="80"/>
+                                        <TableColumn fx:id="seanceTypeColumn" text="TYPE" prefWidth="150"/>
+                                        <TableColumn fx:id="seanceCoachColumn" text="COACH" prefWidth="160"/>
+                                        <TableColumn fx:id="seanceMembreColumn" text="MEMBRE" prefWidth="160"/>
+                                    </columns>
+                                    <columnResizePolicy>
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                    </columnResizePolicy>
+                                </TableView>
+                            </VBox>
+
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="100" hgrow="ALWAYS"/>
+                            </columnConstraints>
+                        </GridPane>
+                    </VBox>
+                </ScrollPane>
+            </center>
+
+            <!-- Footer -->
+            <bottom>
+                <HBox alignment="CENTER" styleClass="footer">
+                    <padding>
+                        <Insets top="12" right="35" bottom="12" left="35"/>
+                    </padding>
+                    <Label fx:id="lastUpdateLabel" text="⚡ Dernière mise à jour : --:--:--" styleClass="footer-text">
+                        <font><Font name="System Bold" size="13"/></font>
+                    </Label>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </center>
+
+</BorderPane>
