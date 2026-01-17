@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.salledesport.controller.LoginController"
+            stylesheets="@../css/login.css"
+            styleClass="root">
+
+    <center>
+        <VBox alignment="CENTER" spacing="25" styleClass="login-container">
+            <padding>
+                <Insets top="40" right="40" bottom="40" left="40"/>
+            </padding>
+
+            <!-- Logo et Titre -->
+            <VBox alignment="CENTER" spacing="15">
+                <Label text="💪" styleClass="logo">
+                    <font><Font size="60"/></font>
+                </Label>
+                <Label text="GYM MANAGER" styleClass="title">
+                    <font><Font name="System Bold" size="28"/></font>
+                </Label>
+                <Label text="Système de Gestion" styleClass="subtitle">
+                    <font><Font size="13"/></font>
+                </Label>
+            </VBox>
+
+            <!-- Formulaire -->
+            <VBox spacing="20" styleClass="form-container">
+                <!-- Username -->
+                <VBox spacing="8">
+                    <Label text="👤 Nom d'utilisateur" styleClass="field-label">
+                        <font><Font name="System Bold" size="12"/></font>
+                    </Label>
+                    <TextField fx:id="usernameField" promptText="Entrez votre nom d'utilisateur"
+                               styleClass="input-field">
+                        <font><Font size="13"/></font>
+                    </TextField>
+                </VBox>
+
+                <!-- Password -->
+                <VBox spacing="8">
+                    <Label text="🔒 Mot de passe" styleClass="field-label">
+                        <font><Font name="System Bold" size="12"/></font>
+                    </Label>
+                    <PasswordField fx:id="passwordField" promptText="Entrez votre mot de passe"
+                                   styleClass="input-field">
+                        <font><Font size="13"/></font>
+                    </PasswordField>
+                </VBox>
+
+                <!-- Message Label -->
+                <Label fx:id="messageLabel" text="" wrapText="true"
+                       styleClass="message-label" minHeight="30"/>
+
+                <!-- Bouton Connexion -->
+                <Button fx:id="connexionButton" text="SE CONNECTER"
+                        onAction="#handleConnexion"
+                        styleClass="btn-login" maxWidth="Infinity">
+                    <font><Font name="System Bold" size="14"/></font>
+                </Button>
+
+                <!-- Mot de passe oublié -->
+                <HBox alignment="CENTER">
+                    <Hyperlink text="Mot de passe oublié ?"
+                               onAction="#handleMotDePasseOublie"
+                               styleClass="link-forgot">
+                        <font><Font size="11"/></font>
+                    </Hyperlink>
+                </HBox>
+            </VBox>
+
+            <!-- Footer -->
+            <VBox alignment="CENTER" spacing="8">
+                <Separator prefWidth="300">
+                    <padding><Insets top="10" bottom="10"/></padding>
+                </Separator>
+                <Label text="Développé par Rim and Aya • 2026" styleClass="footer-text">
+                    <font><Font size="10"/></font>
+                </Label>
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>

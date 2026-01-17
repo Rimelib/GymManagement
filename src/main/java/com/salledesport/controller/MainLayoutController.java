@@ -1,11 +1,13 @@
 package com.salledesport.controller;
 
+import com.salledesport.model.Administrateur;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -24,11 +26,23 @@ public class MainLayoutController {
     @FXML private Button btnAbonnements;
     @FXML private Button btnPaiements;
 
+    // ✅ NOUVEAU : Info administrateur
+    private Administrateur administrateurConnecte;
+
     @FXML
     public void initialize() {
         System.out.println("🔧 Initialisation MainLayoutController...");
         // Charger le Dashboard par défaut
         chargerPage("/view/DashboardContent.fxml");
+    }
+
+    // ✅ NOUVEAU : Recevoir l'admin depuis LoginController
+    public void setAdministrateur(Administrateur admin) {
+        this.administrateurConnecte = admin;
+        System.out.println("👤 Administrateur connecté : " + admin.getPrenom() + " " + admin.getNom());
+
+        // TODO: Mettre à jour l'UI avec le nom de l'admin (optionnel)
+        // Par exemple, si vous avez un Label dans MainLayout.fxml pour afficher le nom
     }
 
     // ============ NAVIGATION ============
@@ -78,18 +92,25 @@ public class MainLayoutController {
 
         if (alert.showAndWait().get() == ButtonType.OK) {
             try {
-                // Rediriger vers la page de login si elle existe
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/salledesport/view/Login.fxml"));
+                // Retourner à la page de login
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
                 Parent root = loader.load();
 
                 Stage stage = (Stage) contentArea.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
+                stage.setTitle("🏋️ Gym Management - Connexion");
+                stage.setResizable(false);
+                stage.setMaximized(false);
+                stage.setWidth(450);
+                stage.setHeight(600);
+                stage.centerOnScreen();
                 stage.show();
+
+                System.out.println("👋 Déconnexion réussie");
             } catch (IOException e) {
                 System.err.println("❌ Erreur lors de la déconnexion: " + e.getMessage());
                 e.printStackTrace();
-                // Si pas de page login, juste fermer l'application
                 System.exit(0);
             }
         }
@@ -114,7 +135,6 @@ public class MainLayoutController {
             System.err.println("❌ Erreur lors du chargement de la page: " + fxmlPath);
             e.printStackTrace();
 
-            // Afficher une erreur à l'utilisateur
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur de chargement");
             alert.setHeaderText("Impossible de charger la page");
@@ -122,8 +142,6 @@ public class MainLayoutController {
             alert.showAndWait();
         }
     }
-
-    // ============ GESTION DES BOUTONS ACTIFS ============
 
     private void setActiveButton(Button activeBtn) {
         // Retirer la classe active de tous les boutons

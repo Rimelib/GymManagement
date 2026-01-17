@@ -224,3 +224,48 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `administrateur`
+-- Table pour l'authentification des administrateurs
+--
+
+CREATE TABLE `administrateur` (
+                                  `id_admin` int(11) NOT NULL,
+                                  `username` varchar(50) NOT NULL,
+                                  `password` varchar(255) NOT NULL,
+                                  `nom` varchar(50) NOT NULL,
+                                  `prenom` varchar(50) NOT NULL,
+                                  `email` varchar(100) DEFAULT NULL,
+                                  `date_creation` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `administrateur`
+-- Identifiants par défaut pour les tests
+--
+
+INSERT INTO `administrateur` (`id_admin`, `username`, `password`, `nom`, `prenom`, `email`, `date_creation`) VALUES
+                                                                                                                 (1, 'admin', 'admin123', 'Administrateur', 'Principal', 'admin@salledesport.ma', '2026-01-01'),
+                                                                                                                 (2, 'rim', 'rim123', 'EL IBRAHIMI', 'Rim', 'rim@salledesport.ma', '2026-01-01'),
+                                                                                                                 (3, 'aya', 'aya123', 'AKHALOUI', 'Aya', 'aya@salledesport.ma', '2026-01-01');
+
+--
+-- Index pour la table `administrateur`
+--
+ALTER TABLE `administrateur`
+    ADD PRIMARY KEY (`id_admin`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT pour la table `administrateur`
+--
+ALTER TABLE `administrateur`
+    MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

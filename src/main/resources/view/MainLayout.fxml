@@ -71,7 +71,7 @@
                     <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
                 </Button>
 
-                <Button fx:id="btnSeances" text="🏋️  Séances"
+                <Button fx:id="btnSeances" text="🏋️ Séances"
                         onAction="#handleNavigateSeances"
                         styleClass="menu-btn"
                         maxWidth="Infinity" alignment="CENTER_LEFT">

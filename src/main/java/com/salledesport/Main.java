@@ -11,23 +11,19 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Charger le layout principal avec sidebar persistante
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainLayout.fxml"));
+            // ✅ Démarrer avec la page de login
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
             Parent root = loader.load();
 
-            // Créer la scène
-            Scene scene = new Scene(root, 1400, 900);
+            Scene scene = new Scene(root, 450, 600);
 
-            // Configurer la fenêtre principale
-            primaryStage.setTitle("💪 Gym Management System");
+            primaryStage.setTitle("🏋️ Gym Management - Connexion");
             primaryStage.setScene(scene);
-            primaryStage.setMinWidth(1200);
-            primaryStage.setMinHeight(800);
-            primaryStage.setMaximized(true);
+            primaryStage.setResizable(false);
+            primaryStage.centerOnScreen();
             primaryStage.show();
 
-            System.out.println("✅ Application lancée avec succès !");
-            System.out.println("📌 Layout principal chargé avec sidebar persistante");
+            System.out.println("✅ Application lancée - Page de login");
 
         } catch (Exception e) {
             System.err.println("❌ Erreur lors du lancement de l'application:");

@@ -94,4 +94,33 @@ public class DatabaseConnection {
             return false;
         }
     }
+
+    public static void main(String[] args) {
+        System.out.println("🔍 Test de connexion...");
+        System.out.println("URL: " + URL);
+        System.out.println("USER: " + USER);
+
+        try {
+            Connection conn = getConnection();
+            System.out.println("✅ Connexion réussie !");
+
+            // Tester la table administrateur
+            String sql = "SELECT * FROM administrateur";
+            var stmt = conn.createStatement();
+            var rs = stmt.executeQuery(sql);
+
+            System.out.println("\n📋 Administrateurs dans la BD :");
+            while (rs.next()) {
+                System.out.println("  - ID: " + rs.getInt("id_admin") +
+                        " | Username: " + rs.getString("username") +
+                        " | Nom: " + rs.getString("nom") + " " + rs.getString("prenom"));
+            }
+
+            conn.close();
+
+        } catch (Exception e) {
+            System.err.println("❌ ERREUR: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }
