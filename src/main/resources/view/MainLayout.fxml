@@ -12,7 +12,7 @@
 
     <!-- SIDEBAR NAVIGATION PERSISTANTE -->
     <left>
-        <VBox styleClass="sidebar" prefWidth="260" spacing="0">
+        <VBox styleClass="sidebar" minHeight="0" maxHeight="Infinity" spacing="0">
             <!-- Logo Section -->
             <VBox alignment="CENTER" spacing="12" styleClass="logo-section">
                 <padding>
@@ -95,8 +95,9 @@
                     <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
                 </Button>
 
-                <!-- Spacer -->
+                <!-- Spacer
                 <Region VBox.vgrow="ALWAYS"/>
+                -->
 
                 <!-- Logout Section -->
                 <Separator styleClass="sidebar-separator">
@@ -115,14 +116,14 @@
             </VBox>
 
             <!-- User Info Footer -->
-            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="user-info">
+            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="user-info" minHeight="0" maxHeight="Infinity">
                 <padding>
                     <Insets top="15" right="15" bottom="15" left="15"/>
                 </padding>
                 <Label text="👤" styleClass="user-avatar">
                     <font><Font size="24"/></font>
                 </Label>
-                <VBox spacing="2">
+                <VBox spacing="0" minHeight="0" maxHeight="Infinity">
                     <Label fx:id="adminNameLabel" text="Admin User" styleClass="user-name">
                         <font><Font name="System Bold" size="12"/></font>
                     </Label>

@@ -288,3 +288,23 @@
 .scroll-pane .viewport {
     -fx-background-color: #0a0f1e;
 }
+/* ============ RESPONSIVE POUR PETITS ÉCRANS ============ */
+@media screen and (max-height: 768px) {
+    .stat-card {
+        -fx-padding: 20 20 20 20;
+    }
+
+    .stat-value {
+        -fx-font-size: 28px;
+    }
+
+    .header-title {
+        -fx-font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    .stat-icon {
+        -fx-font-size: 32px;
+    }
+}
