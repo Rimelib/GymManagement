@@ -15,11 +15,11 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
             Parent root = loader.load();
 
-            Scene scene = new Scene(root, 450, 680); // ✅ Augmenté de 600 à 680
-
+            Scene scene = new Scene(root); // ✅ Augmenté de 600 à 680
             primaryStage.setTitle("🏋️ Gym Management - Connexion");
             primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
+            primaryStage.setResizable(true);
+            primaryStage.sizeToScene();
             primaryStage.centerOnScreen();
             primaryStage.show();
 
