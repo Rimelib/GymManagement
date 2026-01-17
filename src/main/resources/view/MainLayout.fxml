@@ -98,19 +98,12 @@
                 <!-- Spacer -->
                 <Region VBox.vgrow="ALWAYS"/>
 
-                <!-- Settings Section -->
+                <!-- Logout Section -->
                 <Separator styleClass="sidebar-separator">
                     <padding>
                         <Insets top="10" bottom="10"/>
                     </padding>
                 </Separator>
-
-                <Button text="⚙️  Paramètres"
-                        styleClass="menu-btn menu-btn-secondary"
-                        maxWidth="Infinity" alignment="CENTER_LEFT">
-                    <font><Font size="13"/></font>
-                    <padding><Insets top="14" right="18" bottom="14" left="18"/></padding>
-                </Button>
 
                 <Button text="🚪  Déconnexion"
                         onAction="#handleDeconnexion"
@@ -130,10 +123,10 @@
                     <font><Font size="24"/></font>
                 </Label>
                 <VBox spacing="2">
-                    <Label text="Admin User" styleClass="user-name">
+                    <Label fx:id="adminNameLabel" text="Admin User" styleClass="user-name">
                         <font><Font name="System Bold" size="12"/></font>
                     </Label>
-                    <Label text="Administrateur" styleClass="user-role">
+                    <Label fx:id="adminRoleLabel" text="Administrateur" styleClass="user-role">
                         <font><Font size="10"/></font>
                     </Label>
                 </VBox>
