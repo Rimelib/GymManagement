@@ -8,10 +8,11 @@
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.salledesport.controller.LoginController"
             stylesheets="@../css/login.css"
-            styleClass="root">
+            styleClass="root"
+            minHeight="650">
 
     <center>
-        <VBox alignment="CENTER" spacing="25" styleClass="login-container">
+        <VBox alignment="CENTER" spacing="25" styleClass="login-container" maxWidth="420">
             <padding>
                 <Insets top="40" right="40" bottom="40" left="40"/>
             </padding>
@@ -74,9 +75,12 @@
                 </HBox>
             </VBox>
 
+            <!-- Spacer pour pousser le footer en bas -->
+            <Region VBox.vgrow="SOMETIMES"/>
+
             <!-- Footer -->
             <VBox alignment="CENTER" spacing="8">
-                <Separator prefWidth="300">
+                <Separator prefWidth="300" styleClass="footer-separator">
                     <padding><Insets top="10" bottom="10"/></padding>
                 </Separator>
                 <Label text="Développé par Rim and Aya • 2026" styleClass="footer-text">

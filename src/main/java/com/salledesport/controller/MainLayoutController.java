@@ -26,6 +26,10 @@ public class MainLayoutController {
     @FXML private Button btnAbonnements;
     @FXML private Button btnPaiements;
 
+    // ✅ Labels pour afficher l'admin connecté
+    @FXML private Label adminNameLabel;
+    @FXML private Label adminRoleLabel;
+
     // ✅ NOUVEAU : Info administrateur
     private Administrateur administrateurConnecte;
 
@@ -36,13 +40,21 @@ public class MainLayoutController {
         chargerPage("/view/DashboardContent.fxml");
     }
 
-    // ✅ NOUVEAU : Recevoir l'admin depuis LoginController
+    // ✅ Mettre à jour l'UI avec les infos de l'admin
     public void setAdministrateur(Administrateur admin) {
         this.administrateurConnecte = admin;
-        System.out.println("👤 Administrateur connecté : " + admin.getPrenom() + " " + admin.getNom());
 
-        // TODO: Mettre à jour l'UI avec le nom de l'admin (optionnel)
-        // Par exemple, si vous avez un Label dans MainLayout.fxml pour afficher le nom
+        // Afficher le nom complet
+        if (adminNameLabel != null) {
+            adminNameLabel.setText(admin.getPrenom() + " " + admin.getNom());
+        }
+
+        // Afficher l'email ou le username
+        if (adminRoleLabel != null) {
+            adminRoleLabel.setText("@" + admin.getUsername());
+        }
+
+        System.out.println("👤 Administrateur connecté : " + admin.getPrenom() + " " + admin.getNom());
     }
 
     // ============ NAVIGATION ============

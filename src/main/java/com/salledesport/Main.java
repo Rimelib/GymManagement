@@ -12,10 +12,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             // ✅ Démarrer avec la page de login
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
             Parent root = loader.load();
 
-            Scene scene = new Scene(root, 450, 600);
+            Scene scene = new Scene(root, 450, 680); // ✅ Augmenté de 600 à 680
 
             primaryStage.setTitle("🏋️ Gym Management - Connexion");
             primaryStage.setScene(scene);
